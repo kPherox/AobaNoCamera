@@ -61,7 +61,8 @@ var toggleButton = function(tabId, flag) {
 // タブのステータス変更イベント処理
 var chageTabStatus = function(tabId) {
     chrome.tabs.get(tabId, function(tab) {
-        toggleButton(tabId, (tab.status === 'complete' && tab.url.indexOf('www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/') >= 0) ? true : false);
+        var isKanColleTab = tab.url.indexOf('www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/') >= 0 || tab.url.indexOf('http://pc-play.games.dmm.com/play/kancolle') >= 0;
+        toggleButton(tabId, (tab.status === 'complete' && isKanColleTab) ? true : false);
         //toggleButton(tabId, true);
     });
 };
